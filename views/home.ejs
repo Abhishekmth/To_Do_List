@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title><%=title %></title>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+
+  <body>
+    <div class="heading"><h1>To Do List</h1></div>
+
+    <form action="/" method="POST">
+      <input type="text" name="DESCRIPTION" placeholder=" Enter Description" />
+      <input type="text" name="CATEGORY" placeholder=" Choose Category" />
+      <input type="text" name="DATE" placeholder=" Enter Date" />
+      <button type="submit">Add</button>
+    </form>
+
+    <ul>
+      <% for( let i of to_do_list){%>
+      <li class="list-items">
+        <p class="desc"><%= i.DESCRIPTION%></p>
+        <p class="date"><%= i.DATE%></p>
+        <p class="category"><%= i.CATEGORY%></p>
+      </li>
+
+      <a href="/delete-contact/<%=i.DESCRIPTION %>">Del</a>
+      <% } %>
+    </ul>
+
+    <script type="text/javascript" src="/js/home.js"></script>
+  </body>
+</html>
