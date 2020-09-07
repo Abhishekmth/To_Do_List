@@ -7,7 +7,7 @@
   <body>
     <div class="heading"><h1>To Do List</h1></div>
 
-    <form action="/" method="POST">
+    <form action="/make-to-do-list" method="POST">
       <input type="text" name="DESCRIPTION" placeholder=" Enter Description" />
       <input type="text" name="CATEGORY" placeholder=" Choose Category" />
       <input type="text" name="DATE" placeholder=" Enter Date" />
@@ -21,9 +21,10 @@
         <p class="date"><%= i.DATE%></p>
         <p class="category"><%= i.CATEGORY%></p>
       </li>
-
-      <a href="/delete-contact/<%=i.DESCRIPTION %>">Del</a>
-      <% } %>
+      <form action="/delete-task/<%=i.DESCRIPTION %>" method="POST">
+        <button>Del</button>
+        <% } %>
+      </form>
     </ul>
 
     <script type="text/javascript" src="/js/home.js"></script>

@@ -3,11 +3,13 @@ const path = require("path");
 
 const port = 10000;
 const app = express();
+//const bodyParser = require("body-parser");
+app.use(express.urlencoded());
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.urlencoded());
 
+//app.use(bodyParser);
 var toDoList = [
   {
     DESCRIPTION: "work1",
@@ -39,16 +41,17 @@ app.get("/", function (req, res) {
 
 //this will push to do list data from form
 app.post("/make-to-do-list", function (req, res) {
-  // toDoList.push({
-  //   DESCRIPTION: req.body.DESCRIPTION,
-  //   CATEGORY: req.body.CATEGORY,
-  //   DATE: req.body.DATE,
-  // });
-  toDoList.push(req.data);
+  toDoList.push({
+    DESCRIPTION: req.body.DESCRIPTION,
+    CATEGORY: req.body.CATEGORY,
+    DATE: req.body.DATE,
+  });
+  console.log(req);
+  //toDoList.push(req.data);
   return res.redirect("back");
 });
 
-app.get("/delete-task/:DESCRIPTION", function (req, res) {
+app.post("/delete-task/:DESCRIPTION", function (req, res) {
   let DESCRIPTION = req.params.DESCRIPTION;
 
   let taskIndex = toDoList.findIndex((work) => work.DESCRIPTION == DESCRIPTION);
